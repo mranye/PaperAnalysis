@@ -1,0 +1,164 @@
+nav{
+    background: #333333;
+    height: 50px;
+   /* !*导航条固定*!
+    position: fixed;
+    top: 0;
+    width: 100%;
+    margin: 0 auto;
+    left: 0;
+    z-index: 10000;*/
+}
+#banner {
+    background: dodgerblue;
+    /*background: #112F55;*/
+    height: 550px;
+}
+nav ul{
+    list-style: none;
+    margin: 0;
+}
+nav ul li{
+    display: inline-block;/*横向排列*/
+    line-height: 50px;
+    float: left;
+    margin-right: 30px;
+}
+nav ul li a{
+    line-height: inherit;
+    text-decoration: none;/*去掉文字装饰*/
+    display: inline-block;
+    height: inherit;/*继承父元素高度*/
+    color: white;
+}
+nav ul li.youke{
+    float:right;
+    margin-right: 30px;
+}
+nav ul li.logo{
+    float:right;
+    margin-right: 30px;
+}
+#banner .inner{
+    text-align: center;
+    margin: 0 auto;
+    position: relative;
+    top: 60px;
+}
+#banner .inner h1{
+    margin: 0 auto 50px auto;
+    color: #ffffff;
+}
+#banner .inner .login{
+    width: 370px;
+    position: relative;
+    background-color: #ffffff;
+    left:50%;
+    top:50%;
+    margin-left:-185px;
+}
+.login .switch_header{
+    height: 50px;
+    border-bottom: 1px solid #e2e2e2;
+    position: relative;
+}
+.login .switch_header #login_switch{
+    left: 90px;
+    height: 45px;
+    position: absolute;
+    bottom: 0;
+    font-size: 16px;
+}
+#switch_btn_login{
+    margin-right: 100px;
+    color: black;
+    display: inline-block;
+    height: 45px;
+    line-height: 45px;
+    outline: none;
+    text-decoration: none;
+}
+#switch_btn_sign{
+    color: #999;
+    display: inline-block;
+    height: 45px;
+    line-height: 45px;
+    outline: none;
+    text-decoration: none;
+}
+#switch_bottom{
+    position: absolute;
+    bottom: -1px;
+    border-bottom: 2px solid #848484;
+    width: 32px;
+    left: 0px;
+}
+#loginorsign{
+    height: 285px;
+    display: block;
+    position: relative;
+    overflow: hidden;
+    background: dodgerblue;
+}
+#block_login{
+    display: block;/*是否显示登录*/
+    height: 250px;
+    background-color: #ffffff;
+}
+.login_form input{
+    width: 210px;
+    left: 80px;
+    height: 38px;
+    border: 1px solid #3762bc;
+    font-size: 16px;
+    margin-top: 20px;
+    padding-left: 10px;
+    border-radius: 5px;
+}
+.login_form .forget{
+    font-size: 12px;
+    margin-top: 15px;
+    margin-left: 170px;
+}
+.login_form .login_btn{
+    left: 80px;
+    width: 220px;
+    margin-top: 15px;
+    height: 34px;
+    background-color: dodgerblue;
+    color: white;
+    border: 1px solid #3762bc;
+    border-radius: 5px;
+    font-size: 15px;
+}
+#block_sign{
+    display: none;/*是否显示注册表单*/
+    height: 290px;
+    background-color: #ffffff;
+}
+.sign_form input{
+    width: 210px;
+    left: 80px;
+    height: 38px;
+    border: 1px solid #3762bc;
+    font-size: 16px;
+    margin-top: 20px;
+    padding-left: 10px;
+    border-radius: 5px;
+}
+.sign_form .sign_btn{
+    left: 80px;
+    width: 220px;
+    margin-top: 17px;
+    height: 34px;
+    background-color: dodgerblue;
+    color: white;
+    border: 1px solid #3762bc;
+    border-radius: 5px;
+    font-size: 15px;
+}
+.tip_message{
+    font-size: 12px;
+    margin-top: 12px;
+    color: red;
+}

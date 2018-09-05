@@ -1,0 +1,435 @@
+/*特殊图案定义*/
+@font-face {
+    font-family: "Raphaelicons";
+    src: url('../fonts/raphaelicons-webfont.eot') format('eot'),
+         url('../fonts/raphaelicons-webfont.svg') format('svg'),
+         url('../fonts/raphaelicons-webfont.ttf') format('ttf'),
+         url('../fonts/raphaelicons-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "TengXiang";
+    src: url('../fonts/腾祥铁山楷书简.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+body{
+    background: whitesmoke;
+    font-weight: 400;
+    font-size: 15px;
+    color: #333;
+    overflow: hidden;
+    /*-webkit-font-smoothing: antilialiased;!*设置字体的抗锯齿或者光滑度的属性*!*/
+}
+a{
+    text-decoration: none;
+}
+
+/*上方导航条*/
+nav{
+    background: #333333;
+    height: 50px;
+    /*导航条固定*/
+    position: fixed;
+    top: 0;
+    width: 100%;
+    margin: 0 auto;
+    left: 0;
+    z-index: 10000;
+
+}
+nav ul{
+    list-style: none;
+    margin: 0;
+}
+nav ul li{
+    display: inline-block;/*横向排列*/
+    line-height: 50px;
+    float: left;
+    margin-right: 30px;
+}
+nav ul li a{
+    line-height: inherit;
+    text-decoration: none;/*去掉文字装饰*/
+    display: inline-block;
+    height: inherit;/*继承父元素高度*/
+    color: white;
+}
+nav ul li.youke_head{
+    float:right;
+    margin-right: 30px;
+}
+
+/*下方导航条*/
+.container a{
+    color: #555;
+}
+.container .clr{/*清除浮动的类*/
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    clear: both;
+    padding: 0;
+    margin: 0;
+}
+.st-container{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 50px;
+
+}
+.st-container > input,
+.st-container > a{
+    width: 50%;/*设置每个下方导航的宽度*/
+    height: 34px;
+    line-height: 34px;
+    position: fixed;
+    bottom: 0;
+    cursor: pointer;/*光标形状变为手型*/
+}
+.st-container > input{
+    /*隐藏input*/
+    opacity: 0;/*透明度为0，但是单选按钮存在*/
+    z-index: 1000;
+}
+.st-container a{
+    z-index: 10;
+    font-weight: 700;
+    font-size: 16px;
+    background: #e23a6e;
+    text-align: center;
+    color: #fff;
+    /*box-shadow: 1px 1px 1px rgba(255,250,250,0.2);!*阴影设置*!*/
+}
+#st-control-1,#st-control-1 + a{
+    left: 0%;
+}
+#st-control-2,#st-control-2 + a{
+    left: 50%;
+}
+/*#st-control-3,#st-control-3 + a{
+    left: 50%;
+}
+#st-control-4,#st-control-4 + a{
+    left: 75%;
+}*/
+.st-container input:checked + a,
+.st-container input:checked:hover + a{
+    background: #821134;
+}
+.st-container input:checked + a:after{/*制作选中后的三角形*/
+    content: "";
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    border: 20px solid transparent;/*宽度一共40px*/
+    border-bottom-color: #821134;
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -20px;/*向左移动一半的宽度*/
+}
+.st-container input:hover + a{/*设置下方导航鼠标滑过的颜色*/
+    background: #AD244F;
+}
+
+/*中间内容*/
+.st-scroll,.st-panel{
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.st-scroll{
+    left: 0;
+    top: 0;
+    -webkit-transform: translate3d(0,0,0);/*定义section的位置*/
+    -moz-transform: translate3d(0,0,0);
+    -o-transform:  translate3d(0,0,0);
+    -ms-transform:  translate3d(0,0,0);
+    transform:  translate3d(0,0,0);
+    -webkit-backface-visibility: hidden;/*背面不可见，即只有面向我们的可见*/
+    /*过渡效果*/
+    -webkit-transition: all 0.6s ease-in-out;
+    -moz-transition: all 0.6s ease-in-out;
+    -o--transition: all 0.6s ease-in-out;
+    -ms-transition: all 0.6s ease-in-out;
+    transition:  all 0.6s ease-in-out;
+}
+.st-panel{
+    background: whitesmoke;
+    overflow:hidden;  /*section中的内容超出范围时隐藏*/
+}
+
+/*将下方导航和内容section连接起来*/
+#st-control-1:checked ~ .st-scroll{
+    -webkit-transform: translateY(0%);
+    -moz-transform: translateY(0%);
+    -o-transform: translateY(0%);
+    -ms-transform: translateY(0%);
+    transform: translateY(0%);
+}
+#st-control-2:checked ~ .st-scroll{
+    -webkit-transform: translateY(-100%);
+    -moz-transform: translateY(-100%);
+    -o-transform: translateY(-100%);
+    -ms-transform: translateY(-100%);
+    transform: translateY(-100%);
+}
+/*设置试卷信息section*/
+.shezhi{
+    color: #333333;
+    text-align: center;
+    font-weight: 900;
+    width: 80%;
+    position: absolute;
+    left: 10%;
+    top: 15%;
+    text-shadow: 1px 1px 1px rgba(255,250,250,0.2);/*阴影设置*/
+}
+.inner table{
+    position: relative;
+    margin: 170px auto;
+}
+.input-submit{
+    border: none;
+    background: #333;
+    color: white;
+    padding: 8px 30px;
+}
+/*学生成绩录入section*/
+#banner .inner{
+    text-align: center;
+    max-width: 300px ;
+    margin: 0 auto;
+    position: relative;
+    top: 100px;
+}
+#banner .inner h1{
+    margin: 0;
+    color: #333333;
+    font-family: "Adobe 楷体 Std R";
+    text-shadow: 1px 1px 1px rgba(255,250,250,0.2);/*阴影设置*/
+}
+.st-container .score_down{
+    margin-top: 50px;
+    display: block;
+    line-height: 30px;
+    z-index: 0;
+    font-weight: 500;
+    font-size: 16px;
+    background: whitesmoke;
+    text-align: center;
+    color: #333333;
+    text-shadow: 1px 1px 1px rgba(255,250,250,0.2);/*阴影设置*/
+    border-radius: 5px;
+}
+#banner .inner button{
+    border: none;
+    background: #333;
+    color: white;
+    padding: 12px 15px;
+    margin-top: 25px;
+}
+#banner .inner .tishi{
+    margin-top: 17px;
+    color: #333333;
+}
+.st-container .score_next{
+    display: block;
+    line-height: 30px;
+    margin-top: 95px;
+    background: #fa96b5;
+    color: black;
+    width: 100%;
+    text-shadow: 0px 0px 0px rgba(255,250,250,0.2);/*阴影设置*/
+}
+/*顶部三角制作*/
+.st-desc{
+    width: 200px;
+    height: 200px;
+    background: #fa96b5;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    margin-left: -100px;
+    -webkit-transform: translateY(-50%) rotate(45deg);/*旋转45度*/
+    -moz-transform: translateY(-50%) rotate(45deg);
+    -o-transform: translateY(-50%) rotate(45deg);
+    -ms-transform: translateY(-50%) rotate(45deg);
+    transform: translateY(-50%) rotate(45deg);
+}
+/*图标制作*/
+[data-icon]:after{
+    content: attr(data-icon);
+    width: 200px;
+    height: 200px;
+    color: #fff;
+    font-size: 90px;
+    text-align: center;
+    line-height: 200px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -100px 0 0 -100px;
+    -webkit-transform: rotate(-45deg) translateY(25%);
+    -moz-transform: rotate(-45deg) translateY(25%);
+    -o-transform: rotate(-45deg) translateY(25%);
+    -ms-transform: rotate(-45deg) translateY(25%);
+    transform: rotate(-45deg) translateY(25%);
+    font-family: "Raphaelicons";//调用定义的图标
+    text-shadow: 1px 1px 1px rgba(151,24,64,0.2);/*阴影设置*/
+}
+/*标题震动动画效果*/
+#st-control-1:checked ~ .st-scroll #st-panel-1 h1,
+#st-control-2:checked ~ .st-scroll #st-panel-2 h1{
+    -webkit-animation: movenDown 0.6s ease-in-out 0.2s backwards;
+    -moz-animation: movenDown 0.6s ease-in-out 0.2s backwards;
+    -o-animation: movenDown 0.6s ease-in-out 0.2s backwards;
+    -ms-animation: movenDown 0.6s ease-in-out 0.2s backwards;
+    animation: movenDown 0.6s ease-in-out 0.2s backwards;
+}
+/*定义标题震动动画*/
+@-webkit-keyframes movenDown {
+    0%{
+        -webkit-transform: translateY(-40px);
+        opacity: 0;
+    }
+    100%{
+        -webkit-transform: translateY(0px);
+        opacity: 1;
+    }
+}
+@-moz-keyframes movenDown {
+    0%{
+        -webkit-transform: translateY(-40px);
+        opacity: 0;
+    }
+    100%{
+        -webkit-transform: translateY(0px);
+        opacity: 1;
+    }
+}
+@-o-keyframes movenDown {
+    0%{
+        -webkit-transform: translateY(-40px);
+        opacity: 0;
+    }
+    100%{
+        -webkit-transform: translateY(0px);
+        opacity: 1;
+    }
+}
+@-ms-keyframes movenDown {
+    0%{
+        -webkit-transform: translateY(-40px);
+        opacity: 0;
+    }
+    100%{
+        -webkit-transform: translateY(0px);
+        opacity: 1;
+    }
+}
+@keyframes movenDown {
+    0%{
+        -webkit-transform: translateY(-40px);
+        opacity: 0;
+    }
+    100%{
+        -webkit-transform: translateY(0px);
+        opacity: 1;
+    }
+}
+/*除标题外震动动画效果*/
+#st-control-1:checked ~ .st-scroll #st-panel-1 .input-donghua,
+#st-control-2:checked ~ .st-scroll #st-panel-2 .input-donghua{
+    -webkit-animation: movenUp 0.6s ease-in-out 0.2s backwards;
+    -moz-animation: movenUp 0.6s ease-in-out 0.2s backwards;
+    -o-animation: movenUp 0.6s ease-in-out 0.2s backwards;
+    -ms-animation: movenUp 0.6s ease-in-out 0.2s backwards;
+    animation: movenUp 0.6s ease-in-out 0.2s backwards;
+}
+/*定义标题外震动动画*/
+@-webkit-keyframes movenUp {
+    0%{
+        -webkit-transform: translateY(-40px);
+        opacity: 0;
+    }
+    100%{
+        -webkit-transform: translateY(0px);
+        opacity: 1;
+    }
+}
+@-moz-keyframes movenUp {
+    0%{
+        -webkit-transform: translateY(40px);
+        opacity: 0;
+    }
+    100%{
+        -webkit-transform: translateY(0px);
+        opacity: 1;
+    }
+}
+@-o-keyframes movenUp {
+    0%{
+        -webkit-transform: translateY(40px);
+        opacity: 0;
+    }
+    100%{
+        -webkit-transform: translateY(0px);
+        opacity: 1;
+    }
+}
+@-ms-keyframes movenUp {
+    0%{
+        -webkit-transform: translateY(40px);
+        opacity: 0;
+    }
+    100%{
+        -webkit-transform: translateY(0px);
+        opacity: 1;
+    }
+}
+@keyframes movenUp {
+    0%{
+        -webkit-transform: translateY(40px);
+        opacity: 0;
+    }
+    100%{
+        -webkit-transform: translateY(0px);
+        opacity: 1;
+    }
+}
+/*更改section2颜色*/
+.st-color{
+    background: #fa96b5;
+}
+.st-color .st-desc{
+    background: whitesmoke;
+}
+.st-color [data-icon]:after{
+    color: #fa96b5;
+}
+.st-color h1{
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+}
+
+/*上传文件*/
+#banner .inner .divfile #div_file{
+    background: #333;
+    border: none;
+    padding: 12px 15px;
+    overflow: hidden;
+    color: white;
+    text-decoration: none;
+    text-indent: 0;
+}
+#banner .inner .divfile{
+    margin-top: 55px;
+}
+
+#banner .inner  .divfile #excel_file {
+    opacity: 0;
+}

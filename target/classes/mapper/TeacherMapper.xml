@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.education.paper.dao.TeacherDao">
+
+    <resultMap id="TeacherResult" type="com.education.paper.entity.Teacher">
+        <id column="teacher_num" jdbcType="VARCHAR" property="teacher_num" />
+        <result column="username" jdbcType="VARCHAR" property="username" />
+        <result column="password" jdbcType="VARCHAR" property="password" />
+        <result column="teacher_name" jdbcType="VARCHAR" property="teacher_name" />
+        <result column="course" jdbcType="VARCHAR" property="course" />
+        <result column="college" jdbcType="VARCHAR" property="college" />
+    </resultMap>
+
+    <select id="selectLoginByUsername" parameterType="String" resultMap="TeacherResult">
+        SELECT teacher_num,username,password,teacher_name,course,college
+        FROM tb_teacher
+        WHERE username =#{username}
+    </select>
+
+    <!--<select id="selectAllByUsername" parameterType="com.education.paper.entity.Teacher" resultMap="TeacherResult">
+        SELECT teacher_num,username,password
+        FROM tb_teacher
+        WHERE username =#{username}
+    </select>-->
+
+    <insert id="insertTeacherNameAndPwd" parameterType="com.education.paper.entity.Teacher" keyProperty="teacher_num"  useGeneratedKeys="true">
+        INSERT INTO tb_teacher(username,password)
+        VALUES (#{username},#{password})
+    </insert>
+
+    <update id="updateTeacherAll" parameterType="com.education.paper.entity.Teacher" >
+        UPDATE tb_teacher
+        SET teacher_name=#{teacher_name},course=#{course},college=#{college}
+        WHERE username =#{username}
+    </update>
+
+    <update id="updatePassword" parameterType="com.education.paper.entity.Teacher" >
+        UPDATE tb_teacher
+        SET password=#{password}
+        WHERE username =#{username}
+    </update>
+
+</mapper>

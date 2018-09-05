@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.education.paper.dao.PaperDao">
+
+    <resultMap id="PaperResult" type="com.education.paper.entity.Paper">
+        <id column="paper_num" jdbcType="VARCHAR" property="paper_num" />
+        <result column="username" jdbcType="VARCHAR" property="username" />
+        <result column="profession" jdbcType="VARCHAR" property="profession" />
+        <result column="credit" jdbcType="VARCHAR" property="credit" />
+        <result column="question_num" jdbcType="INTEGER" property="question_num" />
+        <result column="study_year" jdbcType="VARCHAR" property="study_year" />
+        <result column="term" jdbcType="VARCHAR" property="term" />
+        <result column="exam_time" jdbcType="VARCHAR" property="exam_time" />
+        <result column="number_join" jdbcType="INTEGER" property="number_join" />
+        <result column="score_high" jdbcType="FLOAT" property="score_high" />
+        <result column="score_lowest" jdbcType="FLOAT" property="score_lowest" />
+        <result column="rate_pass" jdbcType="FLOAT" property="rate_pass" />
+        <result column="score_average" jdbcType="FLOAT" property="score_average" />
+        <result column="score_variance" jdbcType="FLOAT" property="score_variance" />
+        <result column="rate_difficulty" jdbcType="FLOAT" property="rate_difficulty" />
+        <result column="rate_distribution" jdbcType="FLOAT" property="rate_distribution" />
+        <result column="people0to9" jdbcType="INTEGER" property="people0to9" />
+        <result column="people10to19" jdbcType="INTEGER" property="people10to19" />
+        <result column="people20to29" jdbcType="INTEGER" property="people20to29" />
+        <result column="people30to39" jdbcType="INTEGER" property="people30to39" />
+        <result column="people40to49" jdbcType="INTEGER" property="people40to49" />
+        <result column="people50to59" jdbcType="INTEGER" property="people50to59" />
+        <result column="people60to69" jdbcType="INTEGER" property="people60to69" />
+        <result column="people70to79" jdbcType="INTEGER" property="people70to79" />
+        <result column="people80to89" jdbcType="INTEGER" property="people80to89" />
+        <result column="people90" jdbcType="INTEGER" property="people90" />
+        <result column="per0to9" jdbcType="FLOAT" property="per0to9" />
+        <result column="per10to19" jdbcType="FLOAT" property="per10to19" />
+        <result column="per20to29" jdbcType="FLOAT" property="per20to29" />
+        <result column="per30to39" jdbcType="FLOAT" property="per30to39" />
+        <result column="per40to49" jdbcType="FLOAT" property="per40to49" />
+        <result column="per50to59" jdbcType="FLOAT" property="per50to59" />
+        <result column="per60to69" jdbcType="FLOAT" property="per60to69" />
+        <result column="per70to79" jdbcType="FLOAT" property="per70to79" />
+        <result column="per80to89" jdbcType="FLOAT" property="per80to89" />
+        <result column="per90" jdbcType="FLOAT" property="per90" />
+        <result column="questionType1" jdbcType="VARCHAR" property="questionType1" />
+        <result column="questionType2" jdbcType="VARCHAR" property="questionType2" />
+        <result column="questionType3" jdbcType="VARCHAR" property="questionType3" />
+        <result column="questionType4" jdbcType="VARCHAR" property="questionType4" />
+        <result column="questionType5" jdbcType="VARCHAR" property="questionType5" />
+        <result column="questionType6" jdbcType="VARCHAR" property="questionType6" />
+        <result column="questionType7" jdbcType="VARCHAR" property="questionType7" />
+        <result column="questionType8" jdbcType="VARCHAR" property="questionType8" />
+        <result column="questionType9" jdbcType="VARCHAR" property="questionType9" />
+        <result column="questionScoreRate1" jdbcType="FLOAT" property="questionScoreRate1" />
+        <result column="questionScoreRate2" jdbcType="FLOAT" property="questionScoreRate2" />
+        <result column="questionScoreRate3" jdbcType="FLOAT" property="questionScoreRate3" />
+        <result column="questionScoreRate4" jdbcType="FLOAT" property="questionScoreRate4" />
+        <result column="questionScoreRate5" jdbcType="FLOAT" property="questionScoreRate5" />
+        <result column="questionScoreRate6" jdbcType="FLOAT" property="questionScoreRate6" />
+        <result column="questionScoreRate7" jdbcType="FLOAT" property="questionScoreRate7" />
+        <result column="questionScoreRate8" jdbcType="FLOAT" property="questionScoreRate8" />
+        <result column="questionScoreRate9" jdbcType="FLOAT" property="questionScoreRate9" />
+        <result column="answer1" jdbcType="VARCHAR" property="answer1" />
+        <result column="answer2" jdbcType="VARCHAR" property="answer2" />
+        <result column="answer3" jdbcType="VARCHAR" property="answer3" />
+        <result column="analysis_time" jdbcType="VARCHAR" property="analysis_time" />
+    </resultMap>
+
+    <select id="selectAllByUsername" parameterType="String" resultMap="PaperResult">
+        SELECT *
+        FROM tb_paper
+        WHERE username =#{username}
+    </select>
+
+    <select id="selectAllByUsernameOne" parameterType="String" resultMap="PaperResult">
+        SELECT *
+        FROM tb_paper
+        WHERE username =#{username}
+        and score_high is null
+    </select>
+
+    <insert id="insertUsername" parameterType="com.education.paper.entity.Paper">
+        INSERT INTO tb_paper(username)
+        VALUES (#{username})
+    </insert>
+
+    <update id="updateCreditAndQNum" parameterType="com.education.paper.entity.Paper">
+        UPDATE tb_paper
+        SET credit=#{credit}
+        WHERE username =#{username}
+        and analysis_time is null
+    </update>
+
+    <update id="updateOtherTitle" parameterType="com.education.paper.entity.Paper">
+        UPDATE tb_paper
+        SET profession=#{profession},study_year=#{study_year},term=#{term},exam_time=#{exam_time},question_num=#{question_num}
+        WHERE username =#{username}
+        and score_high is null
+    </update>
+
+    <update id="updateQuestion" parameterType="com.education.paper.entity.Paper">
+        UPDATE tb_paper
+        SET questionType1=#{questionType1},questionType2=#{questionType2},questionType3=#{questionType3},
+            questionType4=#{questionType4},questionType5=#{questionType5},questionType6=#{questionType6},
+            questionType7=#{questionType7},questionType8=#{questionType8},questionType9=#{questionType9},
+            questionScoreRate1=#{questionScoreRate1},questionScoreRate2=#{questionScoreRate2},questionScoreRate3=#{questionScoreRate3},
+            questionScoreRate4=#{questionScoreRate4},questionScoreRate5=#{questionScoreRate5},questionScoreRate6=#{questionScoreRate6},
+            questionScoreRate7=#{questionScoreRate7},questionScoreRate8=#{questionScoreRate8},questionScoreRate9=#{questionScoreRate9},
+            rate_difficulty=#{rate_difficulty},rate_distribution=#{rate_distribution}
+        WHERE username =#{username}
+        and analysis_time is null
+    </update>
+
+    <update id="updateJisuan" parameterType="com.education.paper.entity.Paper">
+        UPDATE tb_paper
+        SET number_join=#{number_join},score_high=#{score_high},score_lowest=#{score_lowest},rate_pass=#{rate_pass},
+            score_average=#{score_average},score_variance=#{score_variance},
+            people0to9=#{people0to9},people10to19=#{people10to19},people20to29=#{people20to29},people30to39=#{people30to39},
+            people40to49=#{people40to49},people50to59=#{people50to59},people60to69=#{people60to69},people70to79=#{people70to79},
+            people80to89=#{people80to89},people90=#{people90},per0to9=#{per0to9},per10to19=#{per10to19},
+            per20to29=#{per20to29},per30to39=#{per30to39},per40to49=#{per40to49},per50to59=#{per50to59},
+            per60to69=#{per60to69},per70to79=#{per70to79},per80to89=#{per80to89},per90=#{per90}
+        WHERE username =#{username}
+        and score_high is null
+    </update>
+
+    <update id="updateAnswers" parameterType="com.education.paper.entity.Paper">
+        UPDATE tb_paper
+        SET answer1=#{answer1},answer2=#{answer2},answer3=#{answer3},analysis_time=#{analysis_time}
+        WHERE username =#{username}
+        and analysis_time is null
+    </update>
+
+    <delete id="deleteOneByNum" parameterType="java.lang.Integer">
+        DELETE FROM tb_paper
+        WHERE paper_num =#{paper_num}
+    </delete>
+
+
+</mapper>
